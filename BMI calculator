@@ -1,0 +1,45 @@
+def calculate_bmi(weight, height):
+    # BMI Formula: weight (kg) / height (m)^2
+    bmi = weight / (height ** 2)
+    return round(bmi, 2)
+
+def get_bmi_category(bmi):
+    # WHO standard categories
+    if bmi < 18.5:
+        return "Underweight"
+    elif 18.5 <= bmi < 24.9:
+        return "Normal weight"
+    elif 25 <= bmi < 29.9:
+        return "Overweight"
+    else:
+        return "Obese"
+
+print("="*40)
+print("   BMI CALCULATOR")
+print("   Created by: Ruhina")  # 👈 Your name here
+print("="*40)
+
+name = input("Enter your name: ")
+print(f"\nHi {name}, let's check your BMI!")
+
+try:
+    weight = float(input("Enter your weight in kg: "))
+    height = float(input("Enter your height in meters: "))
+    
+    # Input validation
+    if weight <= 0 or height <= 0:
+        print("Error: Weight and height must be positive numbers")
+    elif height > 3:
+        print("Error: Please enter height in meters, not cm")
+    else:
+        bmi = calculate_bmi(weight, height)
+        category = get_bmi_category(bmi)
+        
+        print("\n" + "="*40)
+        print(f"Result for {name}:")
+        print(f"Your BMI: {bmi}")
+        print(f"Category: {category}")
+        print("="*40)
+
+except ValueError:
+    print("Error: Please enter valid numbers only")
